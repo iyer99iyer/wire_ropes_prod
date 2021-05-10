@@ -3,7 +3,7 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:wire_ropes/app/app.locator.dart';
 import 'package:wire_ropes/model/excel_data/excel_data.dart';
-import 'package:wire_ropes/services/process_excel_excel.dart';
+import 'package:wire_ropes/services/process_excel_data.dart';
 
 class AddRatesExcelViewModel extends BaseViewModel{
 
@@ -35,9 +35,15 @@ class AddRatesExcelViewModel extends BaseViewModel{
 
   void onProcessShowButtonTapped() async{
     // await _processExcelService.readExcelData(_filePath!);
-     _tableDataFromExcel = await _processExcelService.readAssetExcelData();
-     print("${_tableDataFromExcel!.wireTypeTitle} ${_tableDataFromExcel!.titleList}");
-     notifyListeners();
+
+    // TODO: What happens when onProcessShowButton is tapped
+
+    List<ExcelData> excelDataList = await _processExcelService.readAssetExcelData();
+    excelDataList.forEach((element) {print(element.toString());});
+
+    //  _tableDataFromExcel = await _processExcelService.readAssetExcelData();
+    //  print("${_tableDataFromExcel!.wireTypeTitle} ${_tableDataFromExcel!.titleList}");
+    //  notifyListeners();
   }
 
   void navigateBack(){

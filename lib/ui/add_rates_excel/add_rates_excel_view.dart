@@ -104,43 +104,52 @@ class AddRatesExcelView extends StatelessWidget {
                           OutlineContainer(
                             child: Center(
                                 child: Text(
-                              model.tableDataFromExcel == null
-                                  ? "Yo"
-                                  : model.tableDataFromExcel!.wireTypeTitle,
+                                  "YO",
+
+                              // TODO add code for Wire Type title
+
+                              // model.tableDataFromExcel == null
+                              //     ? "Yo"
+                              //     : model.tableDataFromExcel!.wireTypeTitle,
                               style: ktsSubTitleTextStyle,
                             )),
                           ),
                           verticalSpaceSmall,
                           OutlineContainer(
+
+
+                            // TODO add code for Wire total in the excel
+
+
                             child: Column(
-                              children: List<Widget>.generate(model.tableDataFromExcel!.titleList.length, (int index) {
-                                return Column(
-                                  children: [
-                                    IntrinsicHeight(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Text(
-                                            model.tableDataFromExcel!.titleList[index],
-                                            style: ktsInfoTextTextStyle,
-                                          ),
-                                          VerticalDivider(
-                                            thickness: 2.0,
-                                            color: Colors.black,
-                                          ),
-                                          Text(
-                                            model.tableDataFromExcel!.totalList[index].toString(),
-                                            style: ktsInfoTextTextStyle,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    if(index < model.tableDataFromExcel!.titleList.length-1) Divider(thickness: 2.0,color: Colors.black,),
-                                  ],
-                                );
-                                // model.tableDataFromExcel!.titleList[index]
-                              }),
+                              // children: List<Widget>.generate(model.tableDataFromExcel!.titleList.length, (int index) {
+                              //   return Column(
+                              //     children: [
+                              //       IntrinsicHeight(
+                              //         child: Row(
+                              //           mainAxisAlignment:
+                              //           MainAxisAlignment.spaceAround,
+                              //           children: [
+                              //             Text(
+                              //               model.tableDataFromExcel!.titleList[index],
+                              //               style: ktsInfoTextTextStyle,
+                              //             ),
+                              //             VerticalDivider(
+                              //               thickness: 2.0,
+                              //               color: Colors.black,
+                              //             ),
+                              //             Text(
+                              //               model.tableDataFromExcel!.totalList[index].toString(),
+                              //               style: ktsInfoTextTextStyle,
+                              //             ),
+                              //           ],
+                              //         ),
+                              //       ),
+                              //       if(index < model.tableDataFromExcel!.titleList.length-1) Divider(thickness: 2.0,color: Colors.black,),
+                              //     ],
+                              //   );
+                              //   // model.tableDataFromExcel!.titleList[index]
+                              // }),
                             ),
                           )
                         ],
