@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:excel/excel.dart';
 import 'package:flutter/services.dart';
 import 'package:wire_ropes/model/excel_data/excel_data.dart';
+import 'package:wire_ropes/model/processed_data_count/processed_data_count.dart';
+import 'package:wire_ropes/ui/shared/contants.dart';
 
 class ProcessExcelService {
 
@@ -14,14 +16,18 @@ class ProcessExcelService {
     List<ExcelData> allExcelData = _readData(excel);
 
     return allExcelData;
+
+    List<ProcessedDataCount> processedData = _processData(allExcelData);
   }
 
-  Future readExcelData(String path) async {
+  Future<List<ExcelData>> readExcelData(String path) async {
     var file = path;
     var bytes = File(file).readAsBytesSync();
     var excel = Excel.decodeBytes(bytes);
 
     List<ExcelData> allExcelData = _readData(excel);
+
+    return allExcelData;
 
   }
 
@@ -69,7 +75,6 @@ class ProcessExcelService {
               diameter = data.value.toString();
               break;
             case 4:
-              print(data.value);
               rate = data.value.toString() != "null" ? double.parse(data.value.toString()) : 0.0;
               break;
             case 5:
@@ -104,6 +109,30 @@ class ProcessExcelService {
     }
 
     return _excelDataList;
+  }
+
+  // TODO : do use tree to store data resultant List of data of different and write search algo for that
+  List<ProcessedDataCount> _processData(List<ExcelData> allExcelData){
+
+    List<ProcessedDataCount> processedData = [];
+
+    int msSc6X19Count = 0;
+
+    allExcelData.forEach(
+            (element) {
+              switch(element.type){
+                case MS:
+                  if(element.core == SHORTSTEELCORE){
+                    if(element.construction == C6X19) msSc6X19Count++;
+                    if(element.construction == C6X19) msSc6X19Count++;
+                    if(element.construction == C6X19) msSc6X19Count++;
+                    if(element.construction == C6X19) msSc6X19Count++;
+                  }
+              }
+            });
+
+    return processedData;
+
   }
 
 

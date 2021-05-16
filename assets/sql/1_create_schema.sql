@@ -1,46 +1,34 @@
 
 -- Ropes Type Table
-CREATE TABLE ropes_types(
-    id INTEGER PRIMARY KEY,
-    construction TEXT NON NULL,
-    core TEXT NON NULL,
-    type TEXT NON NULL
+CREATE TABLE selected_rope_type(
+    selectedRopeTypeId INTEGER PRIMARY KEY NOT NULL,
+    construction TEXT NOT NULL,
+    core TEXT NOT NULL,
+    type TEXT NOT NULL
 );
 
 -- MS Ropes Rate Table
-CREATE TABLE wire_ropes(
-    rateId INTEGER PRIMARY KEY,
-    mm TEXT NON NULL,
-    rate TEXT NON NULL,
-    id INTEGER NON NULL
+CREATE TABLE ropes_rate(
+    ropeId INTEGER PRIMARY KEY NOT NULL,
+    diameter TEXT NOT NULL,
+    rate REAL NOT NULL,
+    selectedRopeTypeId INTEGER NOT NULL
 );
 
 -- Slings Rate Table
-CREATE TABLE slings(
-    slingsId INTEGER PRIMARY KEY,
-    id INTEGER NOT NULL,
-    mm TEXT NON NULL,
-    rate TEXT NON NULL,
-    mm2 TEXT NON NULL,
-    doubleF TEXT NON NULL
+CREATE TABLE slings_rate(
+    slingsId INTEGER PRIMARY KEY NOT NULL,
+    secondMeterRate REAL NOT NULL,
+    doubleFerrule REAL NOT NULL,
+    ropeId INTEGER NOT NULL
 );
 
-
---static final _typeTable = 'msRopesTypes';
---  static final _rateTable = 'msRopes';
---
---  static final _slingsTable = 'slings';
---
---  static final column2ndMM = 'mm2';
---  static final columnDoubleF = 'doubleF';
---
---  static final columnType = 'type';
---  static final columnCore = 'core';
---  static final columnConst = 'const';
---
---  static final columnId = 'id';
---  static final columnRateId = 'rateId';
---  static final columnSlingsId = 'slingsId';
---
---  static final columnMM = 'mm';
---  static final columnPrice = 'rate';
+CREATE TABLE excel_data_temp(
+    type TEXT NOT NULL,
+    core TEXT NOT NULL,
+    construction TEXT NOT NULL,
+    diameter TEXT NOT NULL,
+    rate REAL NOT NULL,
+    secondMeterRate REAL NOT NULL,
+    doubleFerrule REAL NOT NULL
+);
