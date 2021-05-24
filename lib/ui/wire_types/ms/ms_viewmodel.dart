@@ -1,8 +1,12 @@
 import 'package:stacked/stacked.dart';
 
 class MSViewModel extends BaseViewModel {
-  void initialise() {
+
+  // final _database
+
+  void initialise() async{
     _constructionOptionList = _constructionOptionSteelCoreList;
+    // _selectedDiameter = await
     _selectedDiameter = _diameterOptionList[0];
   }
 

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:wire_ropes/ui/add_rates_excel/add_rates_excel_viewmodel.dart';
-import 'package:wire_ropes/ui/dumb_widgets/OutlineContainer.dart';
+import 'package:wire_ropes/ui/dumb_widgets/LoadingRoundButton.dart';
 import 'package:wire_ropes/ui/dumb_widgets/RoundMaterialButton.dart';
 import 'package:wire_ropes/ui/dumb_widgets/custom_container_without_title.dart';
 import 'package:wire_ropes/ui/shared/styles.dart';
@@ -24,6 +24,7 @@ class AddRatesExcelView extends StatelessWidget {
                   shrinkWrap: true,
                   children: [
                     verticalSpaceLarge,
+                    // Title
                     Row(
                       children: [
                         GestureDetector(
@@ -53,6 +54,7 @@ class AddRatesExcelView extends StatelessWidget {
                             style: ktsSubTitleTextStyle,
                           ),
                           verticalSpaceSmall,
+                          // importing Excel file container
                           CustomContainerWithoutTitle(
                             child: Center(
                               child: Column(
@@ -91,68 +93,39 @@ class AddRatesExcelView extends StatelessWidget {
                       ),
                     ),
                     verticalSpaceMedium,
-                    RoundMaterialButton(
-                      title: "Process & Show Data",
-                      onTap: () => model.onProcessShowButtonTapped(),
-                      isButtonDisabled: model.fileName == null ? true : false,
-                    ),
-                    verticalSpaceMedium,
-                    model.tableDataFromExcel != null ?Center(
-                        child: CustomContainerWithoutTitle(
-                      child: Column(
-                        children: [
-                          OutlineContainer(
-                            child: Center(
-                                child: Text(
-                              model.tableDataFromExcel == null
-                                  ? "Yo"
-                                  : model.tableDataFromExcel!.wireTypeTitle,
-                              style: ktsSubTitleTextStyle,
-                            )),
-                          ),
-                          verticalSpaceSmall,
-                          OutlineContainer(
-                            child: Column(
-                              children: List<Widget>.generate(model.tableDataFromExcel!.titleList.length, (int index) {
-                                return Column(
-                                  children: [
-                                    IntrinsicHeight(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Text(
-                                            model.tableDataFromExcel!.titleList[index],
-                                            style: ktsInfoTextTextStyle,
-                                          ),
-                                          VerticalDivider(
-                                            thickness: 2.0,
-                                            color: Colors.black,
-                                          ),
-                                          Text(
-                                            model.tableDataFromExcel!.totalList[index].toString(),
-                                            style: ktsInfoTextTextStyle,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    if(index < model.tableDataFromExcel!.titleList.length-1) Divider(thickness: 2.0,color: Colors.black,),
-                                  ],
-                                );
-                                // model.tableDataFromExcel!.titleList[index]
-                              }),
-                            ),
+
+                    // processing Excel, adding to temp table and showing data
+                    !model.processAndShowDataProcessing
+                        ? RoundMaterialButton(
+                            title: "Process & Show Data",
+                            onTap: () => model.onProcessShowButtonTapped(),
+                            isButtonDisabled:
+                                model.fileName == null ? true : false,
                           )
-                        ],
-                      ),
-                      percentage: 0.6,
-                    )):Container(),
+                        : LoadingRoundButton(),
                     verticalSpaceMedium,
-                    RoundMaterialButton(
+
+                    // showing the processed data in the table format
+                    model.tableData != null
+                        ? Center(
+                            child: DataTable(
+                              sortColumnIndex: 0,
+                              columnSpacing: 25,
+                              decoration: BoxDecoration(
+                                color: kcWireTypeButtonColor,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              columns: model.getDataColumn,
+                              rows: model.getDataRow,
+                            ))
+                        : Container(),
+                    verticalSpaceMedium,
+                    // importing the verified data into tables
+                    !model.importProcessing?RoundMaterialButton(
                       title: "Import",
-                      onTap: () {},
-                      isButtonDisabled: model.tableDataFromExcel != null ? false: true,
-                    ),
+                      onTap: () => model.onImportButtonTapped(),
+                      isButtonDisabled: !model.importButton,
+                    ):LoadingRoundButton(),
                   ],
                 ),
               ),
