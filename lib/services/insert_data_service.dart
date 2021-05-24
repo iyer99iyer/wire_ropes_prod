@@ -3,6 +3,7 @@ import 'package:wire_ropes/model/excel_data/excel_data.dart';
 import 'package:wire_ropes/model/ropes_rate/ropes_rate.dart';
 import 'package:wire_ropes/model/selected_rope_type/selected_rope_type.dart';
 import 'package:wire_ropes/model/slings_rate/slings_rate.dart';
+import 'package:wire_ropes/model/view_count_excel_data/view_count_excel_data.dart';
 import 'package:wire_ropes/services/database_service.dart';
 
 class InsertDataService {
@@ -166,7 +167,7 @@ class InsertDataService {
 
   }
 
-  void showDataList() async {
+  showDataList() async {
     int lengthOfElement = await _databaseService.getCurrentLengthOfAllTypes();
 
     print(lengthOfElement);
@@ -182,4 +183,21 @@ class InsertDataService {
     // await _databaseService.getSlingsTypeFromTempTable();
 
   }
+
+  Future<List<ViewCountExcelData>> addToTempDBAndShowData(List<ExcelData> dataList)async{
+
+    // remove previous values from the temp table
+    await _databaseService.deleteAllValuesFromTempTable();
+
+    // inserting all the values to the temp table (having parameters as the ExcelData object)
+    await _databaseService.addExcelDataList(dataList);
+
+    List<ViewCountExcelData> viewCountExcelDataList = await _databaseService.getCountAndTypeFromExcel();
+
+    viewCountExcelDataList.forEach((element) {print(element);});
+
+    return viewCountExcelDataList;
+
+  }
+
 }
