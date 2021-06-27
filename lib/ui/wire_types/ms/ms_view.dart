@@ -25,6 +25,7 @@ class MSView extends StatelessWidget {
               body: Column(
                 children: [
                   ListView(
+                    primary: false,
                     shrinkWrap: true,
                     children: [
                       Row(

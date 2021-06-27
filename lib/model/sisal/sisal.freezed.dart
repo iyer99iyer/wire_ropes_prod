@@ -20,7 +20,7 @@ Sisal _$SisalFromJson(Map<String, dynamic> json) {
 class _$SisalTearOff {
   const _$SisalTearOff();
 
-  _Sisal call({String? coreConstruction, String? diameter}) {
+  _Sisal call({required String coreConstruction, required String diameter}) {
     return _Sisal(
       coreConstruction: coreConstruction,
       diameter: diameter,
@@ -37,8 +37,8 @@ const $Sisal = _$SisalTearOff();
 
 /// @nodoc
 mixin _$Sisal {
-  String? get coreConstruction => throw _privateConstructorUsedError;
-  String? get diameter => throw _privateConstructorUsedError;
+  String get coreConstruction => throw _privateConstructorUsedError;
+  String get diameter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ mixin _$Sisal {
 abstract class $SisalCopyWith<$Res> {
   factory $SisalCopyWith(Sisal value, $Res Function(Sisal) then) =
       _$SisalCopyWithImpl<$Res>;
-  $Res call({String? coreConstruction, String? diameter});
+  $Res call({String coreConstruction, String diameter});
 }
 
 /// @nodoc
@@ -69,11 +69,11 @@ class _$SisalCopyWithImpl<$Res> implements $SisalCopyWith<$Res> {
       coreConstruction: coreConstruction == freezed
           ? _value.coreConstruction
           : coreConstruction // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       diameter: diameter == freezed
           ? _value.diameter
           : diameter // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -83,7 +83,7 @@ abstract class _$SisalCopyWith<$Res> implements $SisalCopyWith<$Res> {
   factory _$SisalCopyWith(_Sisal value, $Res Function(_Sisal) then) =
       __$SisalCopyWithImpl<$Res>;
   @override
-  $Res call({String? coreConstruction, String? diameter});
+  $Res call({String coreConstruction, String diameter});
 }
 
 /// @nodoc
@@ -104,11 +104,11 @@ class __$SisalCopyWithImpl<$Res> extends _$SisalCopyWithImpl<$Res>
       coreConstruction: coreConstruction == freezed
           ? _value.coreConstruction
           : coreConstruction // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       diameter: diameter == freezed
           ? _value.diameter
           : diameter // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -116,15 +116,15 @@ class __$SisalCopyWithImpl<$Res> extends _$SisalCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Sisal implements _Sisal {
-  _$_Sisal({this.coreConstruction, this.diameter});
+  _$_Sisal({required this.coreConstruction, required this.diameter});
 
   factory _$_Sisal.fromJson(Map<String, dynamic> json) =>
       _$_$_SisalFromJson(json);
 
   @override
-  final String? coreConstruction;
+  final String coreConstruction;
   @override
-  final String? diameter;
+  final String diameter;
 
   @override
   String toString() {
@@ -161,14 +161,15 @@ class _$_Sisal implements _Sisal {
 }
 
 abstract class _Sisal implements Sisal {
-  factory _Sisal({String? coreConstruction, String? diameter}) = _$_Sisal;
+  factory _Sisal({required String coreConstruction, required String diameter}) =
+      _$_Sisal;
 
   factory _Sisal.fromJson(Map<String, dynamic> json) = _$_Sisal.fromJson;
 
   @override
-  String? get coreConstruction => throw _privateConstructorUsedError;
+  String get coreConstruction => throw _privateConstructorUsedError;
   @override
-  String? get diameter => throw _privateConstructorUsedError;
+  String get diameter => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SisalCopyWith<_Sisal> get copyWith => throw _privateConstructorUsedError;

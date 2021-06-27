@@ -20,7 +20,10 @@ SS _$SSFromJson(Map<String, dynamic> json) {
 class _$SSTearOff {
   const _$SSTearOff();
 
-  _SS call({String? grade, String? construction, String? diameter}) {
+  _SS call(
+      {required String grade,
+      required String construction,
+      required String diameter}) {
     return _SS(
       grade: grade,
       construction: construction,
@@ -38,9 +41,9 @@ const $SS = _$SSTearOff();
 
 /// @nodoc
 mixin _$SS {
-  String? get grade => throw _privateConstructorUsedError;
-  String? get construction => throw _privateConstructorUsedError;
-  String? get diameter => throw _privateConstructorUsedError;
+  String get grade => throw _privateConstructorUsedError;
+  String get construction => throw _privateConstructorUsedError;
+  String get diameter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +54,7 @@ mixin _$SS {
 abstract class $SSCopyWith<$Res> {
   factory $SSCopyWith(SS value, $Res Function(SS) then) =
       _$SSCopyWithImpl<$Res>;
-  $Res call({String? grade, String? construction, String? diameter});
+  $Res call({String grade, String construction, String diameter});
 }
 
 /// @nodoc
@@ -72,15 +75,15 @@ class _$SSCopyWithImpl<$Res> implements $SSCopyWith<$Res> {
       grade: grade == freezed
           ? _value.grade
           : grade // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       construction: construction == freezed
           ? _value.construction
           : construction // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       diameter: diameter == freezed
           ? _value.diameter
           : diameter // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -90,7 +93,7 @@ abstract class _$SSCopyWith<$Res> implements $SSCopyWith<$Res> {
   factory _$SSCopyWith(_SS value, $Res Function(_SS) then) =
       __$SSCopyWithImpl<$Res>;
   @override
-  $Res call({String? grade, String? construction, String? diameter});
+  $Res call({String grade, String construction, String diameter});
 }
 
 /// @nodoc
@@ -112,15 +115,15 @@ class __$SSCopyWithImpl<$Res> extends _$SSCopyWithImpl<$Res>
       grade: grade == freezed
           ? _value.grade
           : grade // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       construction: construction == freezed
           ? _value.construction
           : construction // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       diameter: diameter == freezed
           ? _value.diameter
           : diameter // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -128,16 +131,19 @@ class __$SSCopyWithImpl<$Res> extends _$SSCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_SS implements _SS {
-  _$_SS({this.grade, this.construction, this.diameter});
+  _$_SS(
+      {required this.grade,
+      required this.construction,
+      required this.diameter});
 
   factory _$_SS.fromJson(Map<String, dynamic> json) => _$_$_SSFromJson(json);
 
   @override
-  final String? grade;
+  final String grade;
   @override
-  final String? construction;
+  final String construction;
   @override
-  final String? diameter;
+  final String diameter;
 
   @override
   String toString() {
@@ -176,16 +182,19 @@ class _$_SS implements _SS {
 }
 
 abstract class _SS implements SS {
-  factory _SS({String? grade, String? construction, String? diameter}) = _$_SS;
+  factory _SS(
+      {required String grade,
+      required String construction,
+      required String diameter}) = _$_SS;
 
   factory _SS.fromJson(Map<String, dynamic> json) = _$_SS.fromJson;
 
   @override
-  String? get grade => throw _privateConstructorUsedError;
+  String get grade => throw _privateConstructorUsedError;
   @override
-  String? get construction => throw _privateConstructorUsedError;
+  String get construction => throw _privateConstructorUsedError;
   @override
-  String? get diameter => throw _privateConstructorUsedError;
+  String get diameter => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SSCopyWith<_SS> get copyWith => throw _privateConstructorUsedError;

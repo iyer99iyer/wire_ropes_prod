@@ -28,6 +28,10 @@ const doubleFerrule = "doubleFerrule";
 
 const excelDataTempTable = "excel_data_temp";
 
+final SelectedRopeType nullSelectedRopeType = SelectedRopeType(selectedRopeTypeId: 0,construction: "0X0",core: "null",type: "null");
+final RopesRate nullRopesRate = RopesRate(ropeId: 0,diameter: "0mm",rate: 0.0,selectedRopeTypeId: 0);
+final SlingsRate nullSlingsRate = SlingsRate(ropeId: 0,doubleFerrule: 0.0,secondMeterRate: 0.0,slingsId: 0);
+
 @LazySingleton()
 class DatabaseService {
   final _migrationService = locator<DatabaseMigrationService>();
@@ -214,6 +218,21 @@ class DatabaseService {
     print(resultList.length);
   }
 
+  Future<RopesRate> getRate(int compareSelectedRopeTypeId, String compareDiameter) async{
+    List<Map<String,dynamic>> resultList = await _database.rawQuery(
+        "SELECT * FROM $ropesRateTable " +
+            "WHERE $selectedRopeTypeId = '$compareSelectedRopeTypeId' AND " +
+            "$diameter = '$compareDiameter'");
+
+    print(resultList.first['rate'].runtimeType);
+
+    if (resultList.length > 0) {
+      return RopesRate.fromJson(resultList.first);
+    }
+    return nullRopesRate;
+
+  }
+
   Future<bool> checkWhetherRopeAlreadyPresent(RopesRate ropesRate) async {
     bool check = false;
 
@@ -244,6 +263,11 @@ class DatabaseService {
 
   deleteAllValuesFromRopesRateTable() async {
     await _database.delete(ropesRateTable);
+  }
+
+  Future<List<RopesRate>> getRopesTypeWhere(int selectedRopeType) async {
+    List<Map<String,dynamic>> resultList = await _database.query(ropesRateTable,where: '$selectedRopeTypeId = ?',whereArgs: [selectedRopeType]);
+    return resultList.map((ropesRate) => RopesRate.fromJson(ropesRate)).toList();
   }
 
   // ************************************************* slingsRateTable *****************************************
@@ -281,4 +305,17 @@ class DatabaseService {
     });
     print(resultList.length);
   }
+
+  Future<SlingsRate> getSlingsRate(int compareRopeId)async {
+
+    List<Map<String,dynamic>> resultList = await _database.rawQuery(
+        "SELECT * FROM $slingsRateTable " +
+            "WHERE $ropeId = '$compareRopeId'");
+
+    if (resultList.length > 0) return SlingsRate.fromJson(resultList.first);
+
+    return nullSlingsRate;
+
+  }
+
 }

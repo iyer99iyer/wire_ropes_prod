@@ -1,13 +1,21 @@
 import 'package:stacked/stacked.dart';
+import 'package:wire_ropes/app/app.locator.dart';
+import 'package:wire_ropes/services/get_diameter.dart';
 
 class SlingViewModel extends BaseViewModel{
-  void initialise() {
+
+  final GetDiameter _getDiameter = locator<GetDiameter>();
+
+  initialise()async {
     _selectedDiameter = _diameterOptionList[0];
+    await updateDiameterOptionList();
   }
 
+  String _type = "slings";
   // Core
 
   // variables
+  List<String> _coreOptionListDB = ["sc","fc"];
   List<String> _coreOptionList = ["Steel Core", "Fiber Core"];
   int _selectedCoreIndex = 0;
 
@@ -16,10 +24,12 @@ class SlingViewModel extends BaseViewModel{
   int get selectedCoreIndex => _selectedCoreIndex;
   String get coreTitle => "Core";
   String get coreStringValue => _coreOptionList[_selectedCoreIndex];
+  String get coreStringValueDB => _coreOptionListDB[_selectedCoreIndex];
 
   // functions
-  void updateCoreSelectedIndex(int index) {
+  updateCoreSelectedIndex(int index) async{
     _selectedCoreIndex = index;
+    await updateDiameterOptionList();
     notifyListeners();
   }
 
@@ -54,8 +64,9 @@ class SlingViewModel extends BaseViewModel{
   String get constructionStringValue => _constructionOptionList[_selectedConstructionIndex];
 
   // functions
-  void updateConstructionSelectedIndex(int index) {
+  updateConstructionSelectedIndex(int index)async {
     _selectedConstructionIndex = index;
+    await updateDiameterOptionList();
     notifyListeners();
   }
 
@@ -75,6 +86,11 @@ class SlingViewModel extends BaseViewModel{
   // functions
   void updateSelectedDiameter(String diameter) {
     _selectedDiameter = diameter;
+    notifyListeners();
+  }
+  updateDiameterOptionList()async{
+    _diameterOptionList = await _getDiameter.getDiameterSlings(_type, coreStringValueDB, constructionStringValue);
+    _selectedDiameter = _diameterOptionList[0];
     notifyListeners();
   }
 }

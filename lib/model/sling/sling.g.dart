@@ -8,10 +8,10 @@ part of 'sling.dart';
 
 _$_Sling _$_$_SlingFromJson(Map<String, dynamic> json) {
   return _$_Sling(
-    core: json['core'] as String?,
-    coating: json['coating'] as String?,
-    construction: json['construction'] as String?,
-    diameter: json['diameter'] as String?,
+    core: json['core'] as String,
+    coating: json['coating'] as String,
+    construction: json['construction'] as String,
+    diameter: json['diameter'] as String,
   );
 }
 

@@ -5,7 +5,7 @@ part 'ss.g.dart';
 
 @freezed
 class SS with _$SS {
-  factory SS({ String? grade, String? construction, String? diameter }) = _SS;
+  factory SS({required String grade,required String construction,required String diameter }) = _SS;
 
   factory SS.fromJson(Map<String, dynamic> json) => _$SSFromJson(json);
 }

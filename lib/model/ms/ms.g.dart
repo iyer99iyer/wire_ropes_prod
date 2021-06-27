@@ -8,10 +8,10 @@ part of 'ms.dart';
 
 _$_MS _$_$_MSFromJson(Map<String, dynamic> json) {
   return _$_MS(
-    core: json['core'] as String?,
-    coating: json['coating'] as String?,
-    construction: json['construction'] as String?,
-    diameter: json['diameter'] as String?,
+    core: json['core'] as String,
+    coating: json['coating'] as String,
+    construction: json['construction'] as String,
+    diameter: json['diameter'] as String,
   );
 }
 

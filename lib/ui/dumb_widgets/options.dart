@@ -20,6 +20,7 @@ class Options extends StatelessWidget {
     return Container(
       height: scrollDirection != Axis.vertical ? 40 : null,
       child: ListView.builder(
+        primary: false,
         shrinkWrap: scrollDirection != Axis.vertical ? false : true,
         scrollDirection: scrollDirection,
         itemCount: optionList.length,

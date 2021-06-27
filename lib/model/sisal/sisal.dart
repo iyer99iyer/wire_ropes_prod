@@ -5,7 +5,7 @@ part 'sisal.g.dart';
 
 @freezed
 class Sisal with _$Sisal {
-  factory Sisal({ String? coreConstruction, String? diameter }) = _Sisal;
+  factory Sisal({required String coreConstruction,required String diameter }) = _Sisal;
 
   factory Sisal.fromJson(Map<String, dynamic> json) => _$SisalFromJson(json);
 }

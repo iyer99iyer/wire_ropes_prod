@@ -1,13 +1,22 @@
 import 'package:stacked/stacked.dart';
+import 'package:wire_ropes/app/app.locator.dart';
+import 'package:wire_ropes/services/get_diameter.dart';
 
 class SisalViewModel extends BaseViewModel{
-  void initialise() {
+
+  final GetDiameter _getDiameter = locator<GetDiameter>();
+
+  void initialise()async {
     _selectedDiameter = _diameterOptionList[0];
+    await updateDiameterOptionList();
   }
 
+  String _type = "sisal";
   // Core & Construction
 
   // variables
+  String _core = "fc";
+  String _construction = "8X19";
   List<String> _coreConstructionOptionList = ["Fiber Core 8X19"];
   int _selectedCoreConstructionIndex = 0;
 
@@ -41,6 +50,11 @@ class SisalViewModel extends BaseViewModel{
   // functions
   void updateSelectedDiameter(String diameter) {
     _selectedDiameter = diameter;
+    notifyListeners();
+  }
+  updateDiameterOptionList()async{
+    _diameterOptionList = await _getDiameter.getDiameterSisal(_type, _core, _construction);
+    _selectedDiameter = _diameterOptionList[0];
     notifyListeners();
   }
 }

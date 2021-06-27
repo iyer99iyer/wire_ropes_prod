@@ -1,11 +1,17 @@
 import 'package:stacked/stacked.dart';
+import 'package:wire_ropes/app/app.locator.dart';
+import 'package:wire_ropes/services/get_diameter.dart';
 
 class SSViewModel extends BaseViewModel{
 
-  void initialise() {
+  final GetDiameter _getDiameter = locator<GetDiameter>();
+
+  void initialise() async{
     _selectedDiameter = _diameterOptionList[0];
+    await updateDiameterOptionList();
   }
 
+  String _type = "ss";
   // Grade
 
   // variables
@@ -57,6 +63,11 @@ class SSViewModel extends BaseViewModel{
   // functions
   void updateSelectedDiameter(String diameter) {
     _selectedDiameter = diameter;
+    notifyListeners();
+  }
+  updateDiameterOptionList()async{
+    _diameterOptionList = await _getDiameter.getDiameterSS(_type, gradeStringValue, constructionStringValue);
+    _selectedDiameter = _diameterOptionList[0];
     notifyListeners();
   }
 

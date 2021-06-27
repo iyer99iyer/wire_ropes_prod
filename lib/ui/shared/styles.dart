@@ -11,6 +11,7 @@ const kcWireTypeTextColor = Colors.black;
 const kcSelectedTypeTextColor = Colors.white;
 const kcWireTypeButtonColor = Color(0xFFFCDCD2);
 const kcSelectedWireTypeButtonColor = Color(0xFF0B3C69);
+const kcButtonColor = Color(0xffE04D55);
 
 // sub title color
 const kcSubTitleTextColor = Colors.black;

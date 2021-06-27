@@ -1,18 +1,24 @@
 import 'package:stacked/stacked.dart';
+import 'package:wire_ropes/app/app.locator.dart';
+import 'package:wire_ropes/services/get_diameter.dart';
 
 class MSViewModel extends BaseViewModel {
 
-  // final _database
+  final GetDiameter _getDiameter = locator<GetDiameter>();
 
   void initialise() async{
     _constructionOptionList = _constructionOptionSteelCoreList;
-    // _selectedDiameter = await
+    // _diameterOptionList = await _getDiameter.getDiameterMS(_type, coreStringValue, constructionStringValue);
     _selectedDiameter = _diameterOptionList[0];
+    await updateDiameterOptionList();
   }
 
   // Core
 
   // variables
+  String _type = "ms";
+
+  List<String> _coreOptionListDB = ["sc","fc"];
   List<String> _coreOptionList = ["Steel Core", "Fiber Core"];
   int _selectedCoreIndex = 0;
 
@@ -21,11 +27,13 @@ class MSViewModel extends BaseViewModel {
   int get selectedCoreIndex => _selectedCoreIndex;
   String get coreTitle => "Core";
   String get coreStringValue => _coreOptionList[_selectedCoreIndex];
+  String get coreStringValueDB => _coreOptionListDB[_selectedCoreIndex];
 
   // functions
-  void updateCoreSelectedIndex(int index) {
+  void updateCoreSelectedIndex(int index) async{
     _selectedCoreIndex = index;
     updateConstructionList(_coreOptionList[index]);
+    await updateDiameterOptionList();
     notifyListeners();
   }
 
@@ -63,8 +71,9 @@ class MSViewModel extends BaseViewModel {
   String get constructionStringValue => _constructionOptionList[_selectedConstructionIndex];
 
   // functions
-  void updateConstructionSelectedIndex(int index) {
+  void updateConstructionSelectedIndex(int index) async{
     _selectedConstructionIndex = index;
+    await updateDiameterOptionList();
     notifyListeners();
   }
 
@@ -88,6 +97,12 @@ class MSViewModel extends BaseViewModel {
   // functions
   void updateSelectedDiameter(String diameter) {
     _selectedDiameter = diameter;
+    notifyListeners();
+  }
+
+  updateDiameterOptionList()async{
+    _diameterOptionList = await _getDiameter.getDiameterMS(_type, coreStringValueDB, constructionStringValue);
+    _selectedDiameter = _diameterOptionList[0];
     notifyListeners();
   }
 

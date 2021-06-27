@@ -8,8 +8,8 @@ part of 'sisal.dart';
 
 _$_Sisal _$_$_SisalFromJson(Map<String, dynamic> json) {
   return _$_Sisal(
-    coreConstruction: json['coreConstruction'] as String?,
-    diameter: json['diameter'] as String?,
+    coreConstruction: json['coreConstruction'] as String,
+    diameter: json['diameter'] as String,
   );
 }
 

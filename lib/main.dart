@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:wire_ropes/ui/common_page/common_page_view.dart';
-import 'package:wire_ropes/ui/home_page/home_page_view.dart';
+import 'package:wire_ropes/ui/setup_bottom_sheet_ui.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
 
 void main() {
   setupLocator();
+  setupBottomSheetUi();
   runApp(MyApp());
 }
 

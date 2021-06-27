@@ -21,7 +21,10 @@ class _$SlingTearOff {
   const _$SlingTearOff();
 
   _Sling call(
-      {String? core, String? coating, String? construction, String? diameter}) {
+      {required String core,
+      required String coating,
+      required String construction,
+      required String diameter}) {
     return _Sling(
       core: core,
       coating: coating,
@@ -40,10 +43,10 @@ const $Sling = _$SlingTearOff();
 
 /// @nodoc
 mixin _$Sling {
-  String? get core => throw _privateConstructorUsedError;
-  String? get coating => throw _privateConstructorUsedError;
-  String? get construction => throw _privateConstructorUsedError;
-  String? get diameter => throw _privateConstructorUsedError;
+  String get core => throw _privateConstructorUsedError;
+  String get coating => throw _privateConstructorUsedError;
+  String get construction => throw _privateConstructorUsedError;
+  String get diameter => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,7 +58,7 @@ abstract class $SlingCopyWith<$Res> {
   factory $SlingCopyWith(Sling value, $Res Function(Sling) then) =
       _$SlingCopyWithImpl<$Res>;
   $Res call(
-      {String? core, String? coating, String? construction, String? diameter});
+      {String core, String coating, String construction, String diameter});
 }
 
 /// @nodoc
@@ -77,19 +80,19 @@ class _$SlingCopyWithImpl<$Res> implements $SlingCopyWith<$Res> {
       core: core == freezed
           ? _value.core
           : core // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       coating: coating == freezed
           ? _value.coating
           : coating // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       construction: construction == freezed
           ? _value.construction
           : construction // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       diameter: diameter == freezed
           ? _value.diameter
           : diameter // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -100,7 +103,7 @@ abstract class _$SlingCopyWith<$Res> implements $SlingCopyWith<$Res> {
       __$SlingCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? core, String? coating, String? construction, String? diameter});
+      {String core, String coating, String construction, String diameter});
 }
 
 /// @nodoc
@@ -123,19 +126,19 @@ class __$SlingCopyWithImpl<$Res> extends _$SlingCopyWithImpl<$Res>
       core: core == freezed
           ? _value.core
           : core // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       coating: coating == freezed
           ? _value.coating
           : coating // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       construction: construction == freezed
           ? _value.construction
           : construction // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       diameter: diameter == freezed
           ? _value.diameter
           : diameter // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -143,19 +146,23 @@ class __$SlingCopyWithImpl<$Res> extends _$SlingCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Sling implements _Sling {
-  _$_Sling({this.core, this.coating, this.construction, this.diameter});
+  _$_Sling(
+      {required this.core,
+      required this.coating,
+      required this.construction,
+      required this.diameter});
 
   factory _$_Sling.fromJson(Map<String, dynamic> json) =>
       _$_$_SlingFromJson(json);
 
   @override
-  final String? core;
+  final String core;
   @override
-  final String? coating;
+  final String coating;
   @override
-  final String? construction;
+  final String construction;
   @override
-  final String? diameter;
+  final String diameter;
 
   @override
   String toString() {
@@ -200,21 +207,21 @@ class _$_Sling implements _Sling {
 
 abstract class _Sling implements Sling {
   factory _Sling(
-      {String? core,
-      String? coating,
-      String? construction,
-      String? diameter}) = _$_Sling;
+      {required String core,
+      required String coating,
+      required String construction,
+      required String diameter}) = _$_Sling;
 
   factory _Sling.fromJson(Map<String, dynamic> json) = _$_Sling.fromJson;
 
   @override
-  String? get core => throw _privateConstructorUsedError;
+  String get core => throw _privateConstructorUsedError;
   @override
-  String? get coating => throw _privateConstructorUsedError;
+  String get coating => throw _privateConstructorUsedError;
   @override
-  String? get construction => throw _privateConstructorUsedError;
+  String get construction => throw _privateConstructorUsedError;
   @override
-  String? get diameter => throw _privateConstructorUsedError;
+  String get diameter => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$SlingCopyWith<_Sling> get copyWith => throw _privateConstructorUsedError;

@@ -21,6 +21,7 @@ class SisalView extends StatelessWidget {
           body: Column(
             children: [
               ListView(
+                primary: false,
                 shrinkWrap: true,
                 children: [
                   SelectionContainer(

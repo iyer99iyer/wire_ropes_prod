@@ -8,9 +8,9 @@ part of 'ss.dart';
 
 _$_SS _$_$_SSFromJson(Map<String, dynamic> json) {
   return _$_SS(
-    grade: json['grade'] as String?,
-    construction: json['construction'] as String?,
-    diameter: json['diameter'] as String?,
+    grade: json['grade'] as String,
+    construction: json['construction'] as String,
+    diameter: json['diameter'] as String,
   );
 }
 
