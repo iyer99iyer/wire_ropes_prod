@@ -38,5 +38,8 @@ class HomePageViewModel extends BaseViewModel{
   void navigateToAddRatesExcel(){
     _navigationService.navigateTo(Routes.addRatesExcelView);
   }
+  void navigateToNewQuotation(){
+    _navigationService.navigateTo(Routes.newQuotationView);
+  }
 
 }

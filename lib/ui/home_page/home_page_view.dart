@@ -101,8 +101,8 @@ class HomePageView extends StatelessWidget {
                             color: Colors.green,
                           ),
                           ButtonWithImage(
-                            title: "Edit Rates",
-                            onTap: () {},
+                            title: "Quotation",
+                            onTap: () => model.navigateToNewQuotation(),
                             icon: Icons.edit,
                             size: 50,
                           ),

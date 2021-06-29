@@ -13,6 +13,10 @@ class BoxText extends StatelessWidget {
   BoxText.body(this.text) : textStyle = bodyStyle;
   BoxText.mainButton(this.text) : textStyle = mainButtonTextStyle;
   BoxText.button(this.text) : textStyle = buttonTextStyle;
+  BoxText.mainHeadingMontserrat(this.text) : textStyle = mainHeadingMontserratTextStyle;
+  BoxText.subHeadingMontserrat(this.text) : textStyle = subHeadingMontserratTextStyle;
+  BoxText.orderIdMontserrat(this.text) : textStyle = orderIdMontserratTextStyle;
+  BoxText.buttonTextMontserrat(this.text) : textStyle = buttonTextMontserratTextStyle;
 
   @override
   Widget build(BuildContext context) {
