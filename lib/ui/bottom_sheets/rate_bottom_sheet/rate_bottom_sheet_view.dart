@@ -89,7 +89,7 @@ class RateBottomSheetView extends StatelessWidget with $RateBottomSheetView{
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(1),
-                          labelText: "0",
+                          labelText: "         0",
                           labelStyle: TextStyle(color: Colors.grey, fontSize: 18),
                           alignLabelWithHint: true,
                         ),

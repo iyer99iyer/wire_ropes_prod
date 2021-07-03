@@ -8,7 +8,9 @@ class BoxText extends StatelessWidget {
   BoxText.headingOne(this.text) : textStyle = heading1Style;
   BoxText.headingTwo(this.text) : textStyle = heading2Style;
   BoxText.headingThree(this.text) : textStyle = heading3Style;
+  BoxText.headingFour(this.text) : textStyle = heading4Style;
   BoxText.subHeading(this.text) : textStyle = subHeadingStyle;
+  BoxText.subHeadingColorStyle(this.text) : textStyle = subHeadingColorStyle;
   BoxText.editText(this.text) : textStyle = editTextStyle;
   BoxText.body(this.text) : textStyle = bodyStyle;
   BoxText.mainButton(this.text) : textStyle = mainButtonTextStyle;
@@ -23,6 +25,8 @@ class BoxText extends StatelessWidget {
     return Text(
       text,
       style: textStyle,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

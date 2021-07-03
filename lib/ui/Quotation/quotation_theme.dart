@@ -38,9 +38,12 @@ class QuotationTheme extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.arrow_back_ios,
-                    size: 30,
+                  InkWell(
+                    onTap: () => Navigator.pop(context),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: 30,
+                    ),
                   ),
                   horizontalSpaceSmall,
                   BoxText.mainHeadingMontserrat(mainHeading),
@@ -54,9 +57,9 @@ class QuotationTheme extends StatelessWidget {
                   BoxText.orderIdMontserrat(orderId),
                 ],
               ),
-              verticalSpaceLarge,
+              verticalSpaceMedium,
               child,
-              verticalSpaceLarge,
+              verticalSpaceMedium,
               RoundMaterialButton(
                 title: buttonText,
                 onTap: onTap,

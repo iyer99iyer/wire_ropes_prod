@@ -1,6 +1,7 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:wire_ropes/app/app.locator.dart';
+import 'package:wire_ropes/app/app.router.dart';
 
 class EditRopesViewModel extends BaseViewModel{
 
@@ -8,5 +9,8 @@ class EditRopesViewModel extends BaseViewModel{
 
   Future init() async{
 
+  }
+  void navigateToEditCompany(){
+    _navigationService.navigateTo(Routes.editCompanyView);
   }
 }

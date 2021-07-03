@@ -94,8 +94,11 @@ class StackedRouter extends RouterBase {
       );
     },
     EditCompanyView: (data) {
+      var args = data.getArgs<EditCompanyViewArguments>(
+        orElse: () => EditCompanyViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditCompanyView(),
+        builder: (context) => EditCompanyView(key: args.key),
         settings: data,
       );
     },
@@ -107,7 +110,7 @@ class StackedRouter extends RouterBase {
     },
     QuotationDetailsView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const QuotationDetailsView(),
+        builder: (context) => QuotationDetailsView(),
         settings: data,
       );
     },
@@ -129,4 +132,10 @@ class CommonPageViewArguments {
   final Key? key;
   final String pageName;
   CommonPageViewArguments({this.key, required this.pageName});
+}
+
+/// EditCompanyView arguments holder class
+class EditCompanyViewArguments {
+  final Key? key;
+  EditCompanyViewArguments({this.key});
 }

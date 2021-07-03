@@ -16,8 +16,8 @@ class NewQuotationView extends StatelessWidget {
           body: QuotationTheme(
             mainHeading: "Create Quotation",
             subHeading: "Select",
-            orderId: "orderID",
-            child: CustomContainerWithoutTitle(child: Text("orderID"),),
+            orderId: "Order ID",
+            child: CustomContainerWithoutTitle(child: Text("OrderID"),),
             buttonText: "Next",
             onTap: ()=>model.navigateToEditRopes(),
           ),

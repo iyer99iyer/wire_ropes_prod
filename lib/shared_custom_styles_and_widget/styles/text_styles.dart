@@ -17,9 +17,23 @@ final TextStyle heading3Style = GoogleFonts.averiaLibre(
   color: Colors.black,
   fontWeight: FontWeight.bold,
 );
+final TextStyle heading4Style = GoogleFonts.averiaLibre(
+  fontSize: 20,
+  color: Colors.black,
+  fontWeight: FontWeight.bold,
+);
+final TextStyle body = GoogleFonts.averiaLibre(
+  fontSize: 20,
+  color: Colors.black,
+);
 final TextStyle subHeadingStyle = GoogleFonts.averiaLibre(
   fontSize: 18,
   color: Color(0xff636363),
+  fontWeight: FontWeight.normal,
+);
+final TextStyle subHeadingColorStyle = GoogleFonts.averiaLibre(
+  fontSize: 20,
+  color: Color(0xffE04D55),
   fontWeight: FontWeight.normal,
 );
 final TextStyle editTextStyle = GoogleFonts.averiaLibre(
