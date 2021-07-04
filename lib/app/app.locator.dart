@@ -8,6 +8,7 @@
 
 import 'package:sqflite_migration_service/sqflite_migration_service.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../services/database_service.dart';
@@ -18,7 +19,12 @@ import '../services/process_excel_data.dart';
 
 final locator = StackedLocator.instance;
 
-void setupLocator() {
+void setupLocator({String? environment, EnvironmentFilter? environmentFilter}) {
+// Register environments
+  locator.registerEnvironment(
+      environment: environment, environmentFilter: environmentFilter);
+
+// Register dependencies
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => DatabaseService());

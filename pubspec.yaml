@@ -13,8 +13,8 @@ dependencies:
     sdk: flutter
 
   # Stacked
-  stacked: ^2.1.1
-  stacked_services: ^0.8.5
+  stacked: ^2.2.1
+  stacked_services: ^0.8.9
 
   # Freezed and json
   json_annotation: ^4.0.1
@@ -52,7 +52,7 @@ dev_dependencies:
   build_runner:
 
   # stacked generator to generate services and navigation routes
-  stacked_generator: ^0.4.1
+  stacked_generator: ^0.5.0
 
 #  dev dependencies for freezed
   freezed: ^0.14.1+3

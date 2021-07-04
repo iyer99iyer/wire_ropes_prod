@@ -34,10 +34,6 @@ class QuotationDetailsView extends StatelessWidget with $QuotationDetailsView{
                   children: [
                     BoxText.headingFour("Subject :"),
                     CustomContainerWithoutTitle(
-                      // child: Text(
-                      //   "Reg.:  Proforma Invoice for 6x19 SC / FMC 1770 UNG. Steel Wire Ropes",
-                      //   style: heading4Style,
-                      // ),
                       child: TextField(
                         controller: subjectController,
                         focusNode: subjectFocusNode,
@@ -68,10 +64,6 @@ class QuotationDetailsView extends StatelessWidget with $QuotationDetailsView{
                     verticalSpaceSmall,
                     BoxText.headingFour("Body :"),
                     CustomContainerWithoutTitle(
-                      // child: Text(
-                      //   "This is with reference to your order, BH/2020-21 Dt. 28.02.2021, we feel pleasure to forward our Proforma Invoice as Under: -  ",
-                      //   style: heading4Style,
-                      // ),
                       child: TextField(
                         controller: bodyController,
                         focusNode: bodyFocusNode,
@@ -86,10 +78,6 @@ class QuotationDetailsView extends StatelessWidget with $QuotationDetailsView{
                     verticalSpaceSmall,
                     BoxText.headingFour("Payment terms :"),
                     CustomContainerWithoutTitle(
-                      // child: Text(
-                      //   "We Sincerely hope that your good self will find the above to your entire satisfaction.  As per our payment terms send your 30 days PDC Cheque and Courier details as our office Address and Mail ID as under.  ",
-                      //   style: heading4Style,
-                      // ),
                       child: TextField(
                         controller: termsController,
                         focusNode: termsFocusNode,

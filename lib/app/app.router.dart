@@ -109,8 +109,11 @@ class StackedRouter extends RouterBase {
       );
     },
     QuotationDetailsView: (data) {
+      var args = data.getArgs<QuotationDetailsViewArguments>(
+        orElse: () => QuotationDetailsViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => QuotationDetailsView(),
+        builder: (context) => QuotationDetailsView(key: args.key),
         settings: data,
       );
     },
@@ -138,4 +141,10 @@ class CommonPageViewArguments {
 class EditCompanyViewArguments {
   final Key? key;
   EditCompanyViewArguments({this.key});
+}
+
+/// QuotationDetailsView arguments holder class
+class QuotationDetailsViewArguments {
+  final Key? key;
+  QuotationDetailsViewArguments({this.key});
 }
