@@ -17,15 +17,15 @@ class SlingsRateBottomSheetViewModel extends FormViewModel{
   late SlingsRate _slingsRate;
 
   initialise(SheetRequest request) async{
-      BottomSheetCustomData customData = request.customData;
-      print(customData);
-      _price = customData.coating == "Galvanised" ? 1.12 * customData.rate : customData.rate;
+      BottomSheetCustomData data = request.data;
+      print(data);
+      _price = data.coating == "Galvanised" ? 1.12 * data.rate : data.rate;
       _lengthPrice = _price;
       _discountedPrice = _lengthPrice;
       _gstPrice = 1.18 * _discountedPrice;
 
 
-      _slingsRate = await _getPrice.getSlingsRate(ropeId: customData.ropeId);
+      _slingsRate = await _getPrice.getSlingsRate(ropeId: data.ropeId);
 
       _secondMeterRate = _slingsRate.secondMeterRate;
 

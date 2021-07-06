@@ -17,6 +17,7 @@ class QuotationDetailsViewModel extends FormViewModel{
       termsController.text = "We Sincerely hope that your good self will find the above to your entire satisfaction.  As per our payment terms send your 30 days PDC Cheque and Courier details as our office Address and Mail ID as under.";
       // notifyListeners();
   }
+
   void navigateToQuotationDetails(){
     _navigationService.navigateTo(Routes.quotationDetailsView);
   }

@@ -10,9 +10,9 @@ class RateBottomSheetViewModel extends FormViewModel{
   late var customData;
 
   initialise(SheetRequest request) async{
-      BottomSheetCustomData customData = request.customData;
-      print(customData);
-      _price = customData.coating == "Galvanised" ? 1.12 * customData.rate : customData.rate;
+      BottomSheetCustomData data = request.data;
+      print(data);
+      _price = data.coating == "Galvanised" ? 1.12 * data.rate : data.rate;
       _discountedPrice = _price;
       _gstPrice = 1.18*_discountedPrice;
   }

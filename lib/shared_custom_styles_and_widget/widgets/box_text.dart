@@ -25,8 +25,6 @@ class BoxText extends StatelessWidget {
     return Text(
       text,
       style: textStyle,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
     );
   }
 }

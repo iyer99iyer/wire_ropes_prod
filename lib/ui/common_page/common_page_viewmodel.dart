@@ -70,7 +70,7 @@ class CommonPageViewModel extends BaseViewModel {
           '${data.core} | ${data.construction} | ${data.diameter} \n ${data.coating}',
       mainButtonTitle: 'Awesome!',
       secondaryButtonTitle: 'This is cool',
-      customData: BottomSheetCustomData(rate: price, coating: data.coating, ropeId: ropeId),
+      data: BottomSheetCustomData(rate: price, coating: data.coating, ropeId: ropeId),
       isScrollControlled: true,
       barrierDismissible: false,
     );
@@ -111,7 +111,7 @@ class CommonPageViewModel extends BaseViewModel {
           '${data.core} | ${data.construction} | ${data.diameter} \n ${data.coating}',
       mainButtonTitle: 'Awesome!',
       secondaryButtonTitle: 'This is cool',
-      customData: BottomSheetCustomData(rate: price, coating: data.coating, ropeId: ropeId),
+      data: BottomSheetCustomData(rate: price, coating: data.coating, ropeId: ropeId),
       isScrollControlled: true,
       barrierDismissible: false,
       // enableDrag: false,
