@@ -15,6 +15,7 @@ import '../services/database_service.dart';
 import '../services/get_diameter.dart';
 import '../services/get_price.dart';
 import '../services/insert_data_service.dart';
+import '../services/manage_final_wire_service.dart';
 import '../services/process_excel_data.dart';
 
 final locator = StackedLocator.instance;
@@ -27,10 +28,12 @@ void setupLocator({String? environment, EnvironmentFilter? environmentFilter}) {
 // Register dependencies
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => BottomSheetService());
+  locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => DatabaseService());
   locator.registerLazySingleton(() => DatabaseMigrationService());
   locator.registerLazySingleton(() => ProcessExcelService());
   locator.registerLazySingleton(() => InsertDataService());
   locator.registerLazySingleton(() => GetDiameter());
   locator.registerLazySingleton(() => GetPrice());
+  locator.registerLazySingleton(() => ManageFinalWireService());
 }

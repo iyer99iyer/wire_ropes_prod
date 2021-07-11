@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:wire_ropes/app/app.locator.dart';
+import 'package:wire_ropes/app/app.router.dart';
 import 'package:wire_ropes/enums/bottom_sheet_type.dart';
 import 'package:wire_ropes/model/bottom_sheet_custom_data/bottom_sheet_custom_data.dart';
 import 'package:wire_ropes/model/ms/ms.dart';
@@ -10,6 +11,7 @@ import 'package:wire_ropes/model/sisal/sisal.dart';
 import 'package:wire_ropes/model/sling/sling.dart';
 import 'package:wire_ropes/model/ss/ss.dart';
 import 'package:wire_ropes/services/get_price.dart';
+import 'package:wire_ropes/ui/Quotation/new_quotation/new_quotation_view.dart';
 import 'package:wire_ropes/ui/wire_types/ms/ms_view.dart';
 import 'package:wire_ropes/ui/wire_types/sisal/sisal_view.dart';
 import 'package:wire_ropes/ui/wire_types/sling/sling_view.dart';
@@ -17,7 +19,11 @@ import 'package:wire_ropes/ui/wire_types/ss/ss_view.dart';
 
 class CommonPageViewModel extends BaseViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
+  final _dialogService = locator<DialogService>();
+  final _navigationService = locator<NavigationService>();
   final _getPrice = locator<GetPrice>();
+
+  String? _orderID;
 
   late ScrollController _controller = ScrollController(initialScrollOffset: -24);
 
@@ -29,6 +35,11 @@ class CommonPageViewModel extends BaseViewModel {
   late int _selectedIndex;
 
   int? get selectedIndex => _selectedIndex;
+
+  Future init(String pageName, String? orderID) async{
+    setWidgetsForSelectedWireType(pageName);
+    _orderID = orderID;
+  }
 
   void setWidgetsForSelectedWireType(String name) {
     for (int i = 0; i < listWire.length; i++) {
@@ -74,8 +85,15 @@ class CommonPageViewModel extends BaseViewModel {
       isScrollControlled: true,
       barrierDismissible: false,
     );
-    if(sheetResponse!.confirmed)
-    print('price: ${sheetResponse.responseData}');
+
+
+    if(sheetResponse!.confirmed && _orderID == null){
+      // _navigationService.popRepeated();
+      _navigationService.navigateToView(NewQuotationView(wireData: sheetResponse.data,));
+    }else{
+      print("no dialog to show!!");
+    }
+    print('price: ${sheetResponse.data}');
   }
 
   void getSSData(SS data) {
@@ -161,5 +179,20 @@ class CommonPageViewModel extends BaseViewModel {
           color: Colors.black,
         );
     }
+  }
+
+
+  Future showConfirmationDialog() async {
+    var response = await _dialogService.showConfirmationDialog(
+      title: 'No OrderID found',
+      description: 'Do you want to update Confirmation state in the UI?',
+      confirmationTitle: 'Yes',
+      dialogPlatform: DialogPlatform.Material,
+      cancelTitle: 'No',
+    );
+
+    print(response?.confirmed);
+
+    // notifyListeners();
   }
 }

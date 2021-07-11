@@ -7,15 +7,17 @@ import 'package:wire_ropes/ui/shared/ui_helpers.dart';
 
 class CommonPageView extends StatelessWidget {
   final String pageName;
+  final String? orderID;
 
   const CommonPageView({
     Key? key,
-    required this.pageName,
+    required this.pageName, this.orderID,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CommonPageViewModel>.reactive(
-        onModelReady: (model) => model.setWidgetsForSelectedWireType(pageName),
+        // onModelReady: (model) => model.setWidgetsForSelectedWireType(pageName),
+        onModelReady: (model) => model.init(pageName,orderID),
         builder: (context, model, child) => Scaffold(
               body: Container(
                 height: double.infinity,

@@ -63,6 +63,12 @@ final TextStyle mainHeadingMontserratTextStyle = GoogleFonts.montserrat(
   fontWeight: FontWeight.bold,
 );
 
+final TextStyle mainHeadingBlackMontserratTextStyle = GoogleFonts.montserrat(
+  fontSize: 30,
+  color: Colors.black,
+  fontWeight: FontWeight.bold,
+);
+
 final TextStyle subHeadingMontserratTextStyle = GoogleFonts.montserrat(
   fontSize: 24,
   color: Colors.black,
@@ -70,7 +76,7 @@ final TextStyle subHeadingMontserratTextStyle = GoogleFonts.montserrat(
 );
 
 final TextStyle orderIdMontserratTextStyle = GoogleFonts.montserrat(
-  fontSize: 24,
+  fontSize: 10,
   color: Color(0xffE04D55),
   fontWeight: FontWeight.bold,
 );

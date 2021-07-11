@@ -32,3 +32,13 @@ CREATE TABLE excel_data_temp(
     secondMeterRate REAL NOT NULL,
     doubleFerrule REAL NOT NULL
 );
+
+CREATE TABLE final_wires(
+    serialNo INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    originalPrice REAL NOT NULL,
+    discount REAL NOT NULL,
+    orderID TEXT NOT NULL,
+    totalMeters INTEGER NOT NULL,
+    wireTitle TEXT NOT NULL,
+    wireDetails TEXT NOT NULL
+);

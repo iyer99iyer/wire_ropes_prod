@@ -3,6 +3,7 @@ import 'package:sqflite_migration_service/sqflite_migration_service.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:wire_ropes/app/app.locator.dart';
 import 'package:wire_ropes/model/excel_data/excel_data.dart';
+import 'package:wire_ropes/model/final_wire/final_wire.dart';
 import 'package:wire_ropes/model/ropes_rate/ropes_rate.dart';
 import 'package:wire_ropes/model/selected_rope_type/selected_rope_type.dart';
 import 'package:wire_ropes/model/slings_rate/slings_rate.dart';
@@ -28,9 +29,21 @@ const doubleFerrule = "doubleFerrule";
 
 const excelDataTempTable = "excel_data_temp";
 
-final SelectedRopeType nullSelectedRopeType = SelectedRopeType(selectedRopeTypeId: 0,construction: "0X0",core: "null",type: "null");
-final RopesRate nullRopesRate = RopesRate(ropeId: 0,diameter: "0mm",rate: 0.0,selectedRopeTypeId: 0);
-final SlingsRate nullSlingsRate = SlingsRate(ropeId: 0,doubleFerrule: 0.0,secondMeterRate: 0.0,slingsId: 0);
+const finalWiresTable = "final_wires";
+const serialNo = "serialNo";
+const originalPrice = "originalPrice";
+const discount = "discount";
+const orderID = "orderID";
+const totalMeters = "totalMeters";
+const wireTitle = "wireTitle";
+const wireDetails = "wireDetails";
+
+final SelectedRopeType nullSelectedRopeType = SelectedRopeType(
+    selectedRopeTypeId: 0, construction: "0X0", core: "null", type: "null");
+final RopesRate nullRopesRate =
+    RopesRate(ropeId: 0, diameter: "0mm", rate: 0.0, selectedRopeTypeId: 0);
+final SlingsRate nullSlingsRate = SlingsRate(
+    ropeId: 0, doubleFerrule: 0.0, secondMeterRate: 0.0, slingsId: 0);
 
 @LazySingleton()
 class DatabaseService {
@@ -218,8 +231,9 @@ class DatabaseService {
     print(resultList.length);
   }
 
-  Future<RopesRate> getRate(int compareSelectedRopeTypeId, String compareDiameter) async{
-    List<Map<String,dynamic>> resultList = await _database.rawQuery(
+  Future<RopesRate> getRate(
+      int compareSelectedRopeTypeId, String compareDiameter) async {
+    List<Map<String, dynamic>> resultList = await _database.rawQuery(
         "SELECT * FROM $ropesRateTable " +
             "WHERE $selectedRopeTypeId = '$compareSelectedRopeTypeId' AND " +
             "$diameter = '$compareDiameter'");
@@ -230,7 +244,6 @@ class DatabaseService {
       return RopesRate.fromJson(resultList.first);
     }
     return nullRopesRate;
-
   }
 
   Future<bool> checkWhetherRopeAlreadyPresent(RopesRate ropesRate) async {
@@ -266,8 +279,13 @@ class DatabaseService {
   }
 
   Future<List<RopesRate>> getRopesTypeWhere(int selectedRopeType) async {
-    List<Map<String,dynamic>> resultList = await _database.query(ropesRateTable,where: '$selectedRopeTypeId = ?',whereArgs: [selectedRopeType]);
-    return resultList.map((ropesRate) => RopesRate.fromJson(ropesRate)).toList();
+    List<Map<String, dynamic>> resultList = await _database.query(
+        ropesRateTable,
+        where: '$selectedRopeTypeId = ?',
+        whereArgs: [selectedRopeType]);
+    return resultList
+        .map((ropesRate) => RopesRate.fromJson(ropesRate))
+        .toList();
   }
 
   // ************************************************* slingsRateTable *****************************************
@@ -306,16 +324,23 @@ class DatabaseService {
     print(resultList.length);
   }
 
-  Future<SlingsRate> getSlingsRate(int compareRopeId)async {
-
-    List<Map<String,dynamic>> resultList = await _database.rawQuery(
-        "SELECT * FROM $slingsRateTable " +
-            "WHERE $ropeId = '$compareRopeId'");
+  Future<SlingsRate> getSlingsRate(int compareRopeId) async {
+    List<Map<String, dynamic>> resultList = await _database.rawQuery(
+        "SELECT * FROM $slingsRateTable " + "WHERE $ropeId = '$compareRopeId'");
 
     if (resultList.length > 0) return SlingsRate.fromJson(resultList.first);
 
     return nullSlingsRate;
-
   }
 
+  insertIntoFinalWire(FinalWire finalWire) async {
+
+    String query =
+        "INSERT INTO $finalWiresTable($originalPrice,$discount,$orderID,$totalMeters,$wireTitle,$wireDetails) "
+        "VALUES(${finalWire.originalPrice}, ${finalWire.discount}, '${finalWire.orderID}', ${finalWire.totalMeters}, '${finalWire.wireTitle}', '${finalWire.wireDetails}');";
+
+    await _database.rawInsert(query);
+    // 'INSERT INTO $finalWireTable ($originalPrice,$discount,$orderID,$totalMeters,$wireTitle,$wireDetails) VALUES(?,?,?,?,?,?)',[finalWire.originalPrice, finalWire.discount, finalWire.orderID, finalWire.totalMeters, finalWire.wireTitle , finalWire.wireDetails]);
+
+  }
 }

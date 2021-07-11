@@ -9,12 +9,10 @@ import 'package:wire_ropes/ui/shared/styles.dart';
 
 import 'rate_bottom_sheet_view.form.dart';
 
-@FormView(
-fields: [
-FormTextField(name:'discount'),
-]
-)
-class RateBottomSheetView extends StatelessWidget with $RateBottomSheetView{
+@FormView(fields: [
+  FormTextField(name: 'discount'),
+])
+class RateBottomSheetView extends StatelessWidget with $RateBottomSheetView {
   final SheetRequest request;
   final Function(SheetResponse) completer;
   RateBottomSheetView(
@@ -47,9 +45,8 @@ class RateBottomSheetView extends StatelessWidget with $RateBottomSheetView{
                         request.title!,
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width * .5,
-                        child: BoxText.subHeading(request.description!)
-                      )
+                          width: MediaQuery.of(context).size.width * .5,
+                          child: BoxText.subHeading(request.description!))
                     ],
                   ),
                 ),
@@ -61,20 +58,18 @@ class RateBottomSheetView extends StatelessWidget with $RateBottomSheetView{
                       borderRadius: BorderRadius.circular(14),
                       color: kcButtonColor,
                     ),
-                    child: BoxText.button(
-                      "Edit"
-                    ),
+                    child: BoxText.button("Edit"),
                   ),
                 )
               ],
             ),
-            Divider(thickness: 2,),
+            Divider(
+              thickness: 2,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                BoxText.headingTwo(
-                  "Discount"
-                ),
+                BoxText.headingTwo("Discount"),
                 Row(
                   children: [
                     Container(
@@ -82,7 +77,7 @@ class RateBottomSheetView extends StatelessWidget with $RateBottomSheetView{
                       child: TextField(
                         controller: discountController,
                         focusNode: discountFocusNode,
-                        onChanged: (value)=> model.updatePrice(value),
+                        onChanged: (value) => model.updatePrice(value),
                         maxLength: 5,
                         style: TextStyle(color: kcButtonColor, fontSize: 20),
                         textAlign: TextAlign.end,
@@ -90,7 +85,8 @@ class RateBottomSheetView extends StatelessWidget with $RateBottomSheetView{
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(1),
                           labelText: "         0",
-                          labelStyle: TextStyle(color: Colors.grey, fontSize: 18),
+                          labelStyle:
+                              TextStyle(color: Colors.grey, fontSize: 18),
                           alignLabelWithHint: true,
                         ),
                       ),
@@ -100,36 +96,39 @@ class RateBottomSheetView extends StatelessWidget with $RateBottomSheetView{
                 ),
               ],
             ),
-            Divider(thickness: 2,),
+            Divider(
+              thickness: 2,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                BoxText.body(
-                  "1m Price"
-                ),
-                BoxText.body(
-                  "${model.price}"
-
-                ),
+                BoxText.body("1m Price"),
+                BoxText.body("${model.price}"),
               ],
             ),
-            Divider(thickness: 2,),
+            Divider(
+              thickness: 2,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                BoxText.body(
-                    "+18% GST"
-                ),
-                BoxText.body(
-                    "${model.gstPrice}"
-
-                ),
+                BoxText.body("+18% GST"),
+                BoxText.body("${model.gstPrice}"),
               ],
             ),
-            Divider(thickness: 2,),
+            Divider(
+              thickness: 2,
+            ),
             RoundMaterialButton(
               title: "Quotation",
-              onTap: () {completer(SheetResponse(confirmed: true,responseData: model.gstPrice)); print("poped");},
+              onTap: () async {
+                completer(
+                  SheetResponse(
+                    confirmed: true,
+                    data: model.wireData(),
+                  ),
+                );
+              },
               isButtonDisabled: false,
             )
           ],

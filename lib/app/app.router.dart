@@ -9,6 +9,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
+import '../model/final_wire/final_wire.dart';
 import '../ui/Quotation/edit_company/edit_company_view.dart';
 import '../ui/Quotation/edit_ropes/edit_ropes_view.dart';
 import '../ui/Quotation/new_quotation/new_quotation_view.dart';
@@ -77,6 +78,7 @@ class StackedRouter extends RouterBase {
         builder: (context) => CommonPageView(
           key: args.key,
           pageName: args.pageName,
+          orderID: args.orderID,
         ),
         settings: data,
       );
@@ -88,8 +90,14 @@ class StackedRouter extends RouterBase {
       );
     },
     NewQuotationView: (data) {
+      var args = data.getArgs<NewQuotationViewArguments>(
+        orElse: () => NewQuotationViewArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const NewQuotationView(),
+        builder: (context) => NewQuotationView(
+          key: args.key,
+          wireData: args.wireData,
+        ),
         settings: data,
       );
     },
@@ -103,8 +111,12 @@ class StackedRouter extends RouterBase {
       );
     },
     EditRopesView: (data) {
+      var args = data.getArgs<EditRopesViewArguments>(nullOk: false);
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const EditRopesView(),
+        builder: (context) => EditRopesView(
+          key: args.key,
+          orderID: args.orderID,
+        ),
         settings: data,
       );
     },
@@ -134,13 +146,28 @@ class StackedRouter extends RouterBase {
 class CommonPageViewArguments {
   final Key? key;
   final String pageName;
-  CommonPageViewArguments({this.key, required this.pageName});
+  final String? orderID;
+  CommonPageViewArguments({this.key, required this.pageName, this.orderID});
+}
+
+/// NewQuotationView arguments holder class
+class NewQuotationViewArguments {
+  final Key? key;
+  final FinalWire? wireData;
+  NewQuotationViewArguments({this.key, this.wireData});
 }
 
 /// EditCompanyView arguments holder class
 class EditCompanyViewArguments {
   final Key? key;
   EditCompanyViewArguments({this.key});
+}
+
+/// EditRopesView arguments holder class
+class EditRopesViewArguments {
+  final Key? key;
+  final String orderID;
+  EditRopesViewArguments({this.key, required this.orderID});
 }
 
 /// QuotationDetailsView arguments holder class
