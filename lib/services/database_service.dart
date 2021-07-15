@@ -343,4 +343,12 @@ class DatabaseService {
     // 'INSERT INTO $finalWireTable ($originalPrice,$discount,$orderID,$totalMeters,$wireTitle,$wireDetails) VALUES(?,?,?,?,?,?)',[finalWire.originalPrice, finalWire.discount, finalWire.orderID, finalWire.totalMeters, finalWire.wireTitle , finalWire.wireDetails]);
 
   }
+
+  Future<List<FinalWire>> getFinalWiresForOrderID(String compareOrderID)async {
+    List<Map<String, dynamic>> resultList = await _database.query(
+        finalWiresTable,
+        where: '$orderID = ?',
+        whereArgs: [compareOrderID]);
+    return resultList.map((finalWire) => FinalWire.fromJson(finalWire)).toList();
+  }
 }
