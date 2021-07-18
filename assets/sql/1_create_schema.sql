@@ -42,3 +42,8 @@ CREATE TABLE final_wires(
     wireTitle TEXT NOT NULL,
     wireDetails TEXT NOT NULL
 );
+
+CREATE TABLE final_wires(
+    orderID TEXT PRIMARY KEY NOT NULL,
+);
+

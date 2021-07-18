@@ -33,7 +33,11 @@ class NewQuotationView extends StatelessWidget {
                                 wireTitle: wireData!.wireTitle,
                                 wireDetails: wireData!.wireDetails,
                                 discount: wireData!.discount.toString(),
-                                rate: (wireData!.originalPrice *  (100 - wireData!.discount) / 100).toStringAsFixed(2).toString() ,
+                                rate: (wireData!.originalPrice *
+                                        (100 - wireData!.discount) /
+                                        100)
+                                    .toStringAsFixed(2)
+                                    .toString(),
                                 quantity: wireData!.totalMeters.toString(),
                               ),
                               verticalSpaceMedium,
@@ -47,8 +51,20 @@ class NewQuotationView extends StatelessWidget {
                           color: kcPrimaryColor,
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: BoxText.buttonTextMontserrat(
-                            "Generate New OrderID"),
+                        // child: BoxText.buttonTextMontserrat(
+                        //     "Generate New OrderID"),
+                        child: DropdownButton<String>(
+                          dropdownColor: kcPrimaryColor,
+                          hint: BoxText.buttonTextMontserrat("Select Order ID"),
+                          value: model.dropdownValue,
+                          items: model.dropdownItemList.map((valueItem) {
+                            return DropdownMenuItem<String>(
+                              value: valueItem,
+                              child: BoxText.buttonTextMontserrat(valueItem),
+                            );
+                          }).toList(),
+                          onChanged: (_value) => model.updateDropdown(_value),
+                        ),
                       ),
                     ),
                   ],

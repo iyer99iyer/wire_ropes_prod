@@ -5,12 +5,15 @@ import 'package:wire_ropes/app/app.locator.dart';
 import 'package:wire_ropes/app/app.router.dart';
 import 'package:wire_ropes/enums/bottom_sheet_type.dart';
 import 'package:wire_ropes/model/bottom_sheet_custom_data/bottom_sheet_custom_data.dart';
+import 'package:wire_ropes/model/final_wire/final_wire.dart';
 import 'package:wire_ropes/model/ms/ms.dart';
 import 'package:wire_ropes/model/ropes_rate/ropes_rate.dart';
 import 'package:wire_ropes/model/sisal/sisal.dart';
 import 'package:wire_ropes/model/sling/sling.dart';
 import 'package:wire_ropes/model/ss/ss.dart';
+import 'package:wire_ropes/services/database_service.dart';
 import 'package:wire_ropes/services/get_price.dart';
+import 'package:wire_ropes/ui/Quotation/edit_ropes/edit_ropes_view.dart';
 import 'package:wire_ropes/ui/Quotation/new_quotation/new_quotation_view.dart';
 import 'package:wire_ropes/ui/wire_types/ms/ms_view.dart';
 import 'package:wire_ropes/ui/wire_types/sisal/sisal_view.dart';
@@ -19,6 +22,7 @@ import 'package:wire_ropes/ui/wire_types/ss/ss_view.dart';
 
 class CommonPageViewModel extends BaseViewModel {
   final _bottomSheetService = locator<BottomSheetService>();
+  final _databaseService = locator<DatabaseService>();
   final _dialogService = locator<DialogService>();
   final _navigationService = locator<NavigationService>();
   final _getPrice = locator<GetPrice>();
@@ -90,10 +94,19 @@ class CommonPageViewModel extends BaseViewModel {
     if(sheetResponse!.confirmed && _orderID == null){
       // _navigationService.popRepeated();
       _navigationService.navigateToView(NewQuotationView(wireData: sheetResponse.data,));
+    }else if(sheetResponse.confirmed && _orderID != null){
+      FinalWire _finalWire = sheetResponse.data;
+      _finalWire = _finalWire.copyWith(orderID: _orderID!);
+      print("common_page_vm : $_finalWire");
+      await _databaseService.insertIntoFinalWire(_finalWire);
+
+      print("will add this to the orderID $_orderID");
+      _navigationService.popRepeated(2);
+      _navigationService.navigateToView(EditRopesView(orderID: _orderID!,));
     }else{
       print("no dialog to show!!");
     }
-    print('price: ${sheetResponse.data}');
+    // print('price: ${sheetResponse.data}');
   }
 
   void getSSData(SS data) {
